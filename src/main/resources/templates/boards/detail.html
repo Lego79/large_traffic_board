@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title th:text="${boardPost.title()}">Board Detail</title>
+</head>
+<body>
+<section>
+    <header class="page-header">
+        <h1 th:text="${boardPost.title()}">Post</h1>
+        <div>
+            <a class="button secondary" th:href="@{/boards}">Back to List</a>
+            <a class="button success" th:href="@{/boards/new}" style="margin-left:0.5rem;">Write Post</a>
+        </div>
+    </header>
+
+    <div class="meta">
+        <strong th:text="${boardPost.username()}">author</strong>
+        <span style="color:#a0aec0;">(#<span th:text="${boardPost.userId()}"></span>)</span>
+        ·
+        <span th:text="${#temporals.format(boardPost.createdAt(), 'yyyy-MM-dd HH:mm')}"></span>
+    </div>
+
+    <article class="post-body" th:text="${boardPost.content()}"></article>
+
+    <section class="comments">
+        <h2>Comments</h2>
+
+        <div class="empty-state" th:if="${#lists.isEmpty(comments)}">
+            No comments yet.
+        </div>
+
+        <ul class="comment-list" th:if="${not #lists.isEmpty(comments)}">
+            <li th:each="comment : ${comments}">
+                <div class="comment-header">
+                    <strong th:text="${comment.username()}">author</strong>
+                    <small style="color:#718096;">(#<span th:text="${comment.userId()}"></span>)</small>
+                    ·
+                    <span th:text="${#temporals.format(comment.createdAt(), 'yyyy-MM-dd HH:mm')}"></span>
+                </div>
+                <p th:text="${comment.content()}"></p>
+            </li>
+        </ul>
+
+        <div th:if="${currentUser != null}">
+            <form th:action="@{|/boards/${boardPost.id()}/comments|}"
+                  th:object="${commentCreateRequest}"
+                  method="post">
+                <div class="field">
+                    <label for="content">Add a comment</label>
+                    <textarea id="content" rows="3" th:field="*{content}" placeholder="Share your thoughts" required></textarea>
+                    <div class="error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}">Comment error</div>
+                </div>
+                <button type="submit" class="button success">Submit Comment</button>
+            </form>
+        </div>
+        <div class="alert" th:if="${currentUser == null}">
+            Please <a th:href="@{/auth/login(redirect=${'/boards/' + boardPost.id()})}">log in</a> to add a comment.
+        </div>
+    </section>
+</section>
+</body>
+</html>

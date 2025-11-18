@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, content)">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="${title}">Mega Board</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<header class="site-header">
+    <a href="/" class="logo">Mega Board</a>
+    <nav class="main-nav">
+        <a th:href="@{/boards}">All Posts</a>
+        <a th:href="@{/boards/new}" th:if="${currentUser != null}">Write Post</a>
+        <a th:href="@{/auth/signup}" th:if="${currentUser == null}">Sign Up</a>
+        <a th:href="@{/auth/login}" th:if="${currentUser == null}">Log In</a>
+        <div class="user-menu" th:if="${currentUser != null}">
+            <span th:text="${currentUser.username()} + ' logged in'">user</span>
+            <form th:action="@{/auth/logout}" method="post">
+                <button type="submit" class="link-button">Log Out</button>
+            </form>
+        </div>
+    </nav>
+</header>
+<main class="container" th:replace="${content}">
+    <p>No content.</p>
+</main>
+<footer class="site-footer">
+    © Mega Board - resilient board project
+    <div style="margin-top:0.25rem;font-size:0.75rem;">Spring Boot · Thymeleaf · JPA · Docker · AWS · Kafka · Kubernetes</div>
+</footer>
+</body>
+</html>

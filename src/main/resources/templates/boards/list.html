@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Board Posts</title>
+</head>
+<body>
+<section>
+    <header class="page-header">
+        <h1>Recent Posts</h1>
+        <div class="actions">
+            <a class="button success" th:if="${currentUser != null}" th:href="@{/boards/new}">Write Post</a>
+            <a class="button secondary" th:if="${currentUser == null}"
+               th:href="@{/auth/login(redirect=${'/boards'})}">Log In</a>
+        </div>
+    </header>
+
+    <div th:if="${boardCreated}" class="alert">
+        A post was created successfully. ID <strong th:text="${boardPostId}">ID</strong>
+    </div>
+
+    <table class="default-table" th:if="${not #lists.isEmpty(boardPosts)}">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Created At</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="post : ${boardPosts}">
+            <td>
+                <a th:href="@{|/boards/${post.id()}|}" th:text="${post.title()}"></a>
+            </td>
+            <td>
+                <span th:text="${post.username()}"></span>
+                <small style="color:#718096;">(#<span th:text="${post.userId()}"></span>)</small>
+            </td>
+            <td th:text="${#temporals.format(post.createdAt(), 'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="empty-state" th:if="${#lists.isEmpty(boardPosts)}">
+        No posts yet. Be the first to publish something.
+        <div style="margin-top: 1rem;">
+            <a class="button success" th:href="@{/boards/new}" th:if="${currentUser != null}">Create a Post</a>
+            <a class="button secondary" th:href="@{/auth/login(redirect=${'/boards'})}" th:if="${currentUser == null}">Log In</a>
+        </div>
+    </div>
+</section>
+</body>
+</html>

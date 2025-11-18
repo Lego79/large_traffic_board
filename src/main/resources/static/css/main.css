@@ -1,0 +1,197 @@
+:root {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f7fafc;
+    color: #1a202c;
+}
+
+body {
+    margin: 0;
+    background: #f7fafc;
+}
+
+header.site-header {
+    background: #2b6cb0;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header.site-header a.logo {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.15rem;
+    text-decoration: none;
+}
+
+header.site-header nav a {
+    color: rgba(255, 255, 255, 0.85);
+    margin-right: 1rem;
+    text-decoration: none;
+}
+
+nav.main-nav {
+    display: flex;
+    align-items: center;
+}
+
+nav.main-nav .user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-left: 1rem;
+    color: #fff;
+}
+
+header.site-header nav a:last-child {
+    margin-right: 0;
+}
+
+main.container {
+    max-width: 960px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+footer.site-footer {
+    text-align: center;
+    padding: 1rem;
+    color: #4a5568;
+    font-size: 0.85rem;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #2b6cb0;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.button.secondary {
+    background: #4a5568;
+}
+
+.button.success {
+    background: #38a169;
+}
+
+.link-button {
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.page-header .actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+table.default-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.default-table th,
+table.default-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+}
+
+table.default-table th {
+    background-color: #f7fafc;
+}
+
+.alert {
+    background: #edf2f7;
+    border-left: 4px solid #38a169;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.alert.info {
+    border-left-color: #3182ce;
+}
+
+.empty-state {
+    padding: 2rem;
+    text-align: center;
+    color: #4a5568;
+    border: 1px dashed #cbd5f5;
+    border-radius: 8px;
+}
+
+.field {
+    margin-bottom: 1rem;
+}
+
+.field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #cbd5f5;
+    border-radius: 4px;
+}
+
+.error {
+    color: #c53030;
+    font-size: 0.9rem;
+}
+
+.meta {
+    color: #4a5568;
+    margin-bottom: 1rem;
+}
+
+article.post-body {
+    line-height: 1.6;
+    white-space: pre-wrap;
+    border: 1px solid #e2e8f0;
+    padding: 1rem;
+    border-radius: 6px;
+    background: #fefefe;
+}
+
+.comments {
+    margin-top: 2rem;
+}
+
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.comment-list li {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 0.75rem 0;
+}
+
+.comment-header {
+    font-size: 0.9rem;
+    color: #4a5568;
+    margin-bottom: 0.25rem;
+}

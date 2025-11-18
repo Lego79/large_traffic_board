@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Log In</title>
+</head>
+<body>
+<section>
+    <header class="page-header">
+        <h1>Log In</h1>
+        <a class="button secondary" th:href="@{/auth/signup}">Create Account</a>
+    </header>
+
+    <form th:action="@{/auth/login}" th:object="${loginRequest}" method="post">
+        <input type="hidden" name="redirect" th:value="${redirectTarget}">
+        <div th:if="${#fields.hasGlobalErrors()}" class="error"
+             th:each="err : ${#fields.globalErrors()}" th:text="${err}">Invalid credentials</div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" th:field="*{email}" maxlength="255" required>
+            <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input id="password" type="password" th:field="*{password}" minlength="8" required>
+            <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+        </div>
+        <button type="submit" class="button success">Log In</button>
+    </form>
+</section>
+</body>
+</html>

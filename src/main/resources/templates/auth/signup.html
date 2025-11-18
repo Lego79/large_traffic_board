@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/base :: layout(~{::title}, ~{::section})}">
+<head>
+    <title>Create Account</title>
+</head>
+<body>
+<section>
+    <header class="page-header">
+        <h1>Sign Up</h1>
+        <a class="button secondary" th:href="@{/boards}">Back to Posts</a>
+    </header>
+
+    <div class="alert info" th:if="${alreadyLoggedIn}">
+        You are already logged in. Creating a new account will switch the current session.
+    </div>
+
+    <form th:action="@{/auth/signup}" th:object="${signUpRequest}" method="post">
+        <div class="field">
+            <label for="username">Display name</label>
+            <input id="username" type="text" th:field="*{username}" maxlength="100" required>
+            <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name error</div>
+        </div>
+        <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" th:field="*{email}" maxlength="255" required>
+            <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+        </div>
+        <div class="field">
+            <label for="password">Password</label>
+            <input id="password" type="password" th:field="*{password}" minlength="8" required>
+            <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+        </div>
+        <button type="submit" class="button success">Create account</button>
+    </form>
+
+    <p style="margin-top:1rem;">
+        Already joined? <a th:href="@{/auth/login}">Log in</a>
+    </p>
+</section>
+</body>
+</html>
