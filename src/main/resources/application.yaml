@@ -24,23 +24,6 @@ spring:
     properties:
       hibernate:
         globally_quoted_identifiers: true
-
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: "15363804471-ik2n8489k9e0tncirfe9ajepc48aeshc.apps.googleusercontent.com"
-            client-secret: "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"
-            scope: [openid, profile, email]
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
-        provider:
-          google:
-            issuer-uri: https://accounts.google.com
-
-  profiles:
-    include: oauth
-
 logging:
   charset:
     console: UTF-8
@@ -48,10 +31,4 @@ logging:
     dev.full: DEBUG
     org.springframework.security: INFO
 
-security:
-  jwt:
-    secret: "replace-with-32B-plus-secret-string--------------------------------"
-    access-ttl-seconds: 900
 
-file:
-  upload-dir: "C:/Users/KentNa/Desktop/file_db"
